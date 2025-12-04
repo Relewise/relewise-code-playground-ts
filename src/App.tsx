@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { runProductSearch } from './examples/product-search';
 import { runSearchTermPrediction } from './examples/search-term-prediction';
 
@@ -7,33 +7,8 @@ const EXAMPLE_OPTIONS = [
   { id: 'product-search', label: 'Product Search' },
 ];
 
-function resolveExampleId() {
-  const params = new URLSearchParams(window.location.search);
-
-  // Explicit example param takes priority: ?example=search-term-prediction
-  const exampleParam = params.get('example');
-  if (exampleParam) return exampleParam;
-
-  // Fallback: derive from the StackBlitz file param: ?file=src%2Fsearch-term-prediction.ts
-  const fileParam = params.get('file');
-  if (fileParam) {
-    const decoded = fileParam.split('/').pop();
-    if (decoded) {
-      return decoded.replace(/\.[^.]+$/, '');
-    }
-  }
-
-  return 'search-term-prediction';
-}
-
 function App() {
-  const exampleId = useMemo(() => {
-    const resolved = resolveExampleId();
-    return EXAMPLE_OPTIONS.some((opt) => opt.id === resolved)
-      ? resolved
-      : 'search-term-prediction';
-  }, []);
-  const [selectedExample, setSelectedExample] = useState(exampleId);
+  const [selectedExample, setSelectedExample] = useState(EXAMPLE_OPTIONS[0].id);
   const [datasetId, setDatasetId] = useState('');
   const [apiKey, setApiKey] = useState('');
   const [serverUrl, setServerUrl] = useState('');
