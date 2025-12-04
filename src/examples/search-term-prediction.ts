@@ -37,5 +37,5 @@ export async function runSearchTermPrediction(options: PredictionOptions = {}) {
     .take(10);
 
   const response = await searcher.searchTermPrediction(builder.build());
-  console.log(response);
+  return response;
 }

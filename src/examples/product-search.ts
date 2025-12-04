@@ -47,5 +47,5 @@ export async function runProductSearch(options: ProductSearchOptions = {}) {
   });
 
   const response = await searcher.searchProducts(builder.build());
-  console.log(response);
+  return response;
 }

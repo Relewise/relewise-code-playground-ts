@@ -7,43 +7,42 @@ const EXAMPLE_OPTIONS = [
   { id: 'product-search', label: 'Product Search' },
 ];
 
+type Runner = (opts: { datasetId: string; apiKey: string; serverUrl: string }) => Promise<unknown>;
+
+const RUNNERS: Record<string, Runner> = {
+  'search-term-prediction': runSearchTermPrediction,
+  'product-search': runProductSearch,
+};
+
 function App() {
   const [selectedExample, setSelectedExample] = useState(EXAMPLE_OPTIONS[0].id);
   const [datasetId, setDatasetId] = useState('');
   const [apiKey, setApiKey] = useState('');
   const [serverUrl, setServerUrl] = useState('');
-  const [output, setOutput] = useState<string[]>([]);
+  const [output, setOutput] = useState<string>('');
   const [isRunning, setIsRunning] = useState(false);
 
   const handleRun = async () => {
     setIsRunning(true);
-    const logs: string[] = [];
-
-    const originalLog = console.log;
-    console.log = (...args: unknown[]) => {
-      const message = args
-        .map((arg) =>
-          typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-        )
-        .join(' ');
-      logs.push(message);
-      originalLog(...args);
-    };
+    setOutput('');
 
     try {
-      if (selectedExample === 'product-search') {
-        await runProductSearch({ datasetId, apiKey, serverUrl });
-      } else {
-        await runSearchTermPrediction({ datasetId, apiKey, serverUrl });
+      const runner = RUNNERS[selectedExample];
+      if (!runner) {
+        throw new Error(`No runner registered for ${selectedExample}`);
       }
-    } catch (error) {
-      logs.push(
-        `Error: ${error instanceof Error ? error.message : String(error)}`
-      );
-    }
 
-    console.log = originalLog;
-    setOutput(logs);
+      const result = await runner({ datasetId, apiKey, serverUrl });
+      const formatted =
+        typeof result === 'undefined'
+          ? 'Done.'
+          : typeof result === 'string'
+            ? result
+            : JSON.stringify(result, null, 2);
+      setOutput(formatted);
+    } catch (error) {
+      setOutput(`Error: ${error instanceof Error ? error.message : String(error)}`);
+    }
     setIsRunning(false);
   };
 
@@ -184,9 +183,7 @@ function App() {
           minHeight: '200px',
         }}
       >
-        {output.length > 0
-          ? output.join('\n')
-          : 'Click "Run" to execute the selected example'}
+        {output || 'Click "Run" to execute the selected example'}
       </pre>
     </div>
   );
