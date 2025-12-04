@@ -15,7 +15,7 @@ const RUNNERS: Record<string, Runner> = {
 };
 
 function App() {
-  const [selectedExample, setSelectedExample] = useState(EXAMPLE_OPTIONS[0].id);
+  const [selectedExample, setSelectedExample] = useState('');
   const [datasetId, setDatasetId] = useState('');
   const [apiKey, setApiKey] = useState('');
   const [serverUrl, setServerUrl] = useState('');
@@ -25,6 +25,12 @@ function App() {
   const handleRun = async () => {
     setIsRunning(true);
     setOutput('');
+
+    if (!selectedExample) {
+      setOutput('Select an example to run it.');
+      setIsRunning(false);
+      return;
+    }
 
     try {
       const runner = RUNNERS[selectedExample];
@@ -58,6 +64,7 @@ function App() {
           onChange={(e) => setSelectedExample(e.target.value)}
           style={{ padding: '6px 8px', fontSize: '14px' }}
         >
+          <option value="">Select an example…</option>
           {EXAMPLE_OPTIONS.map((opt) => (
             <option key={opt.id} value={opt.id}>
               {opt.label}
@@ -68,7 +75,7 @@ function App() {
 
       <h2>
         {EXAMPLE_OPTIONS.find((opt) => opt.id === selectedExample)?.label ??
-          'Search Term Prediction'}
+          'Select an example to get started'}
       </h2>
 
       <div style={{ marginBottom: '20px' }}>
@@ -171,7 +178,7 @@ function App() {
 
       <button
         onClick={handleRun}
-        disabled={isRunning}
+        disabled={isRunning || !selectedExample}
         style={{ marginBottom: '20px' }}
       >
         {isRunning ? 'Running...' : 'Run'}
@@ -186,7 +193,7 @@ function App() {
           minHeight: '200px',
         }}
       >
-        {output || 'Click "Run" to execute the selected example'}
+        {output || 'Select an example above, fill the fields, then click Run.'}
       </pre>
     </div>
   );
