@@ -4,6 +4,12 @@ import { runSearchTermPrediction } from './examples/search-term-prediction';
 
 type Runner = (opts: { datasetId: string; apiKey: string; serverUrl: string }) => Promise<unknown>;
 
+const ENV_DEFAULTS = {
+  datasetId: import.meta.env.VITE_DATASET_ID ?? '',
+  apiKey: import.meta.env.VITE_API_KEY ?? '',
+  serverUrl: import.meta.env.VITE_SERVER_URL ?? '',
+};
+
 const EXAMPLES: { id: string; label: string; run: Runner }[] = [
   { id: 'search-term-prediction', label: 'Search Term Prediction', run: runSearchTermPrediction },
   { id: 'product-search', label: 'Product Search', run: runProductSearch },
@@ -11,9 +17,9 @@ const EXAMPLES: { id: string; label: string; run: Runner }[] = [
 
 function App() {
   const [selectedExample, setSelectedExample] = useState('');
-  const [datasetId, setDatasetId] = useState('');
-  const [apiKey, setApiKey] = useState('');
-  const [serverUrl, setServerUrl] = useState('');
+  const [datasetId, setDatasetId] = useState(ENV_DEFAULTS.datasetId);
+  const [apiKey, setApiKey] = useState(ENV_DEFAULTS.apiKey);
+  const [serverUrl, setServerUrl] = useState(ENV_DEFAULTS.serverUrl);
   const [output, setOutput] = useState<string>('');
   const [isRunning, setIsRunning] = useState(false);
 
@@ -33,7 +39,11 @@ function App() {
         throw new Error(`No runner registered for ${selectedExample}`);
       }
 
-      const result = await runner({ datasetId, apiKey, serverUrl });
+      const result = await runner({
+        datasetId: datasetId || ENV_DEFAULTS.datasetId,
+        apiKey: apiKey || ENV_DEFAULTS.apiKey,
+        serverUrl: serverUrl || ENV_DEFAULTS.serverUrl,
+      });
       const formatted =
         typeof result === 'undefined'
           ? 'Done.'
