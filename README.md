@@ -1,17 +1,24 @@
-# Relewise Search Term Prediction
+# Relewise Playground (StackBlitz)
 
-This app demonstrates how to use the Relewise Search Term Prediction API.
+Open this project in StackBlitz to view and run Relewise code examples with the editor and preview side by side.
 
-## Getting Started
+## How it works
+- Built with Vite + React; start script: `npm run dev`.
+- The app has a dropdown—pick an example, fill the fields, click Run. No default selection.
+- Examples live in `src/examples/` (current: `search-term-prediction.ts`, `product-search.ts`).
 
-1. [Get your API credentials](https://docs.relewise.com/docs/myrelewise/settings.html#api-keys) from Relewise
-2. Enter your `Dataset ID`, `API Key`, and `Server URL` in the input fields
-3. Click "Run Prediction" to fetch search term predictions
+## Add a new example
+1) Create a file in `src/examples/` exporting a `run...` function matching the existing ones.
+2) Register it in `src/App.tsx` inside the `EXAMPLES` array (add `id`, `label`, `run`).
 
-## Customizing Predictions
+## Environment variables
+- You can provide defaults via `.env` at the project root:
+  - `VITE_DATASET_ID`
+  - `VITE_API_KEY`
+  - `VITE_SERVER_URL`
+- If the input fields are left blank, the app will use these env values.
+- See `.env.example` for the keys; keep your own `.env` untracked.
 
-To customize the search term prediction behavior, edit `src/search-term-prediction.ts`. You can modify:
-- The search term being predicted
-- The number of results returned
-- Language and currency settings
-- Any other SearchTermPredictionBuilder options
+## Local usage
+- Install deps: `npm install`
+- Run dev server: `npm run dev` and open the printed URL.
