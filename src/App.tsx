@@ -2,17 +2,12 @@ import { type CSSProperties, useState } from 'react';
 import { runProductSearch } from './examples/product-search';
 import { runSearchTermPrediction } from './examples/search-term-prediction';
 
-const EXAMPLE_OPTIONS = [
-  { id: 'search-term-prediction', label: 'Search Term Prediction' },
-  { id: 'product-search', label: 'Product Search' },
-];
-
 type Runner = (opts: { datasetId: string; apiKey: string; serverUrl: string }) => Promise<unknown>;
 
-const RUNNERS: Record<string, Runner> = {
-  'search-term-prediction': runSearchTermPrediction,
-  'product-search': runProductSearch,
-};
+const EXAMPLES: { id: string; label: string; run: Runner }[] = [
+  { id: 'search-term-prediction', label: 'Search Term Prediction', run: runSearchTermPrediction },
+  { id: 'product-search', label: 'Product Search', run: runProductSearch },
+];
 
 function App() {
   const [selectedExample, setSelectedExample] = useState('');
@@ -33,7 +28,7 @@ function App() {
     }
 
     try {
-      const runner = RUNNERS[selectedExample];
+      const runner = EXAMPLES.find((entry) => entry.id === selectedExample)?.run;
       if (!runner) {
         throw new Error(`No runner registered for ${selectedExample}`);
       }
@@ -65,7 +60,7 @@ function App() {
           style={{ padding: '6px 8px', fontSize: '14px' }}
         >
           <option value="">Select an example…</option>
-          {EXAMPLE_OPTIONS.map((opt) => (
+          {EXAMPLES.map((opt) => (
             <option key={opt.id} value={opt.id}>
               {opt.label}
             </option>
@@ -74,7 +69,7 @@ function App() {
       </div>
 
       <h2>
-        {EXAMPLE_OPTIONS.find((opt) => opt.id === selectedExample)?.label ??
+        {EXAMPLES.find((opt) => opt.id === selectedExample)?.label ??
           'Select an example to get started'}
       </h2>
 
