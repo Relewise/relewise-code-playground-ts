@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type CSSProperties, useState } from 'react';
 import { runProductSearch } from './examples/product-search';
 import { runSearchTermPrediction } from './examples/search-term-prediction';
 
@@ -117,11 +117,13 @@ function App() {
           </label>
           <input
             id="apiKey"
-            type="password"
+            type="text"
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
             placeholder="Enter API key"
             disabled={isRunning}
+            autoComplete="off"
+            spellCheck={false}
             style={{
               width: '100%',
               padding: '8px',
@@ -130,7 +132,8 @@ function App() {
               borderRadius: '4px',
               boxSizing: 'border-box',
               fontFamily: 'inherit',
-            }}
+              WebkitTextSecurity: 'disc',
+            } as CSSProperties}
           />
         </div>
 

@@ -140,6 +140,9 @@ dist
 # Local build output
 dist/
 
+# Vite cache
+.vite/
+
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
