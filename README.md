@@ -9,7 +9,7 @@ Open this project in StackBlitz to view and run Relewise code examples with the 
 
 ## Add a new example
 1) Create a file in `src/examples/` exporting a `run...` function matching the existing ones.
-2) Register it in `src/App.tsx` inside the `EXAMPLES` array (add `id`, `label`, `run`).
+2) Register it in `src/examples/index.ts` by importing your runner and adding an entry to `EXAMPLES` (`id`, `label`, `run`).
 
 ## Environment variables
 - You can provide defaults via `.env` at the project root:

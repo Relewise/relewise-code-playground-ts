@@ -1,19 +1,11 @@
 import { type CSSProperties, useState } from 'react';
-import { runProductSearch } from './examples/product-search';
-import { runSearchTermPrediction } from './examples/search-term-prediction';
-
-type Runner = (opts: { datasetId: string; apiKey: string; serverUrl: string }) => Promise<unknown>;
+import { EXAMPLES, type ExampleRunner } from './examples';
 
 const ENV_DEFAULTS = {
   datasetId: import.meta.env.VITE_DATASET_ID ?? '',
   apiKey: import.meta.env.VITE_API_KEY ?? '',
   serverUrl: import.meta.env.VITE_SERVER_URL ?? '',
 };
-
-const EXAMPLES: { id: string; label: string; run: Runner }[] = [
-  { id: 'search-term-prediction', label: 'Search Term Prediction', run: runSearchTermPrediction },
-  { id: 'product-search', label: 'Product Search', run: runProductSearch },
-];
 
 function App() {
   const [selectedExample, setSelectedExample] = useState('');
@@ -23,7 +15,7 @@ function App() {
   const [output, setOutput] = useState<string>('');
   const [isRunning, setIsRunning] = useState(false);
 
-  const handleRun = async () => {
+  const handleRun = async () => { 
     setIsRunning(true);
     setOutput('');
 
@@ -34,7 +26,9 @@ function App() {
     }
 
     try {
-      const runner = EXAMPLES.find((entry) => entry.id === selectedExample)?.run;
+      const runner: ExampleRunner | undefined = EXAMPLES.find(
+        (entry) => entry.id === selectedExample
+      )?.run;
       if (!runner) {
         throw new Error(`No runner registered for ${selectedExample}`);
       }
