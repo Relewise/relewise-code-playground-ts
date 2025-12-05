@@ -22,7 +22,7 @@ export async function runProductSearch(options: ProductSearchOptions = {}) {
   const settings = {
     language: 'en', // Change these variables to match your dataset
     currency: 'EUR', // Change these variables to match your dataset
-    displayedAtLocation: 'Search Page',
+    displayedAtLocation: 'Stackblitz Playground',
     user: UserFactory.anonymous(),
   };
 
