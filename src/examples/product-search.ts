@@ -39,7 +39,6 @@ export async function runProductSearch(options: ProductSearchOptions = {}) {
       f
         .addBrandFacet()
         .addSalesPriceRangeFacet('Product')
-        .addVariantSpecificationFacet('Material')
     );
 
   const searcher = new Searcher(datasetId, apiKey, {
