@@ -1,6 +1,7 @@
 # Relewise Playground (StackBlitz)
-
 Open this project in StackBlitz to view and run Relewise code examples with the editor and preview side by side.
+
+https://stackblitz.com/~/github.com/Relewise/relewise-code-playground-ts
 
 ## How it works
 - Built with Vite + React; start script: `npm run dev`.
