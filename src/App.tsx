@@ -40,7 +40,7 @@ function App() {
       });
       const formatted =
         typeof result === 'undefined'
-          ? 'Done.'
+          ? 'undefined'
           : typeof result === 'string'
             ? result
             : JSON.stringify(result, null, 2);
