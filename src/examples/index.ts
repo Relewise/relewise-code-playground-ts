@@ -1,13 +1,13 @@
 import { runProductSearch } from './product-search';
 import { runSearchTermPrediction } from './search-term-prediction';
 
+export type ExampleRunner = (opts: ExampleRunOptions) => Promise<unknown>;
+
 export type ExampleRunOptions = {
   datasetId?: string;
   apiKey?: string;
   serverUrl?: string;
 };
-
-export type ExampleRunner = (opts: ExampleRunOptions) => Promise<unknown>;
 
 export interface ExampleDefinition {
   id: string;
