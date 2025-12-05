@@ -20,8 +20,8 @@ export async function runProductSearch(options: ProductSearchOptions = {}) {
   }
 
   const settings = {
-    language: 'da-DK',
-    currency: 'DKK',
+    language: 'da-DK', // Change these variables to match your dataset
+    currency: 'DKK', // Change these variables to match your dataset
     displayedAtLocation: 'Search Page',
     user: UserFactory.anonymous(),
   };

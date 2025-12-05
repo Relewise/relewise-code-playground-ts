@@ -26,8 +26,8 @@ export async function runSearchTermPrediction(options: PredictionOptions = {}) {
   });
 
   const settings = {
-    language: 'da-DK',
-    currency: 'eur',
+    language: 'da-DK', // Change these variables to match your dataset
+    currency: 'eur', // Change these variables to match your dataset
     displayedAtLocation: 'Search Page',
     user: UserFactory.anonymous(),
   };
