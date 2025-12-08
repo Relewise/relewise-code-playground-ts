@@ -19,14 +19,11 @@ function devLogMiddleware(): Plugin {
             const args = Array.isArray(parsed?.args) ? parsed.args : [parsed]
 
             if (args.length === 1) {
-              // eslint-disable-next-line no-console
               console.log(args[0])
             } else {
-              // eslint-disable-next-line no-console
               console.log(...args)
             }
           } catch {
-            // eslint-disable-next-line no-console
             console.log(body || '<empty>')
           }
 
