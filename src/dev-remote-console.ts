@@ -1,5 +1,6 @@
 // Dev-only console forwarding to the Vite dev server stdout for StackBlitz.
-if (import.meta.env.DEV && typeof window !== 'undefined') {
+// Run only in a browser (StackBlitz executes in the browser even for preview builds).
+if (typeof window !== 'undefined') {
   const levels = ['log', 'info', 'warn', 'error'] as const
   type Level = (typeof levels)[number]
 
@@ -10,9 +11,9 @@ if (import.meta.env.DEV && typeof window !== 'undefined') {
 
     let payload: string
     try {
-      payload = JSON.stringify({ level, time: new Date().toISOString(), args: plainArgs })
+      payload = JSON.stringify({ level, args: plainArgs })
     } catch {
-      payload = JSON.stringify({ level, time: new Date().toISOString(), args: args.map(String) })
+      payload = JSON.stringify({ level, args: args.map(String) })
     }
 
     const blob = new Blob([payload], { type: 'application/json' })
