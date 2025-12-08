@@ -5,42 +5,15 @@ if (typeof window !== 'undefined') {
   type Level = (typeof levels)[number]
 
   const sendToServer = (level: Level, args: unknown[]) => {
-    const plainArgs = args.map((value) =>
-      value instanceof Error ? { message: value.message, stack: value.stack } : value
-    )
-
-    let payload: string
-    try {
-      payload = JSON.stringify({ level, args: plainArgs })
-    } catch {
-      payload = JSON.stringify({ level, args: args.map(String) })
-    }
-
-    const blob = new Blob([payload], { type: 'application/json' })
-    const url = '/__log'
-    const sent = navigator.sendBeacon?.(url, blob)
-
-    if (!sent) {
-      void fetch(url, {
-        method: 'POST',
-        body: payload,
-        keepalive: true,
-        headers: { 'Content-Type': 'application/json' },
-      }).catch(() => {
-        /* ignore */
-      })
-    }
+    const payload = JSON.stringify({ level, args })
+    navigator.sendBeacon?.('/__log', payload)
   }
 
   levels.forEach((level) => {
     const original = console[level].bind(console)
     console[level] = (...args: unknown[]) => {
       original(...args)
-      try {
-        sendToServer(level, args)
-      } catch {
-        // Keep normal console behavior even if forwarding fails.
-      }
+      sendToServer(level, args)
     }
   })
 }
