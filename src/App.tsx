@@ -77,103 +77,114 @@ function App() {
           'Select an example to get started'}
       </h2>
 
-      <div style={{ marginBottom: '20px' }}>
-        <div style={{ marginBottom: '12px' }}>
-          <label
-            htmlFor="datasetId"
-            style={{
-              display: 'block',
-              marginBottom: '4px',
-              fontSize: '14px',
-              fontWeight: '500',
-            }}
-          >
-            Dataset ID
-          </label>
-          <input
-            id="datasetId"
-            type="text"
-            value={datasetId}
-            onChange={(e) => setDatasetId(e.target.value)}
-            placeholder="Enter dataset ID"
-            disabled={isRunning}
-            style={{
-              width: '100%',
-              padding: '8px',
-              fontSize: '14px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              boxSizing: 'border-box',
-              fontFamily: 'inherit',
-            }}
-          />
-        </div>
+      <details open style={{ marginBottom: '20px' }}>
+        <summary
+          style={{
+            cursor: 'pointer',
+            fontWeight: 600,
+            fontSize: '14px',
+          }}
+        >
+          Connection settings
+        </summary>
+        <div style={{ paddingTop: '12px' }}>
+          <div style={{ marginBottom: '12px' }}>
+            <label
+              htmlFor="datasetId"
+              style={{
+                display: 'block',
+                marginBottom: '4px',
+                fontSize: '14px',
+                fontWeight: '500',
+              }}
+            >
+              Dataset ID
+            </label>
+            <input
+              id="datasetId"
+              type="text"
+              value={datasetId}
+              onChange={(e) => setDatasetId(e.target.value)}
+              placeholder="Enter dataset ID"
+              disabled={isRunning}
+              style={{
+                width: '100%',
+                padding: '8px',
+                fontSize: '14px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                boxSizing: 'border-box',
+                fontFamily: 'inherit',
+              }}
+            />
+          </div>
 
-        <div style={{ marginBottom: '12px' }}>
-          <label
-            htmlFor="apiKey"
-            style={{
-              display: 'block',
-              marginBottom: '4px',
-              fontSize: '14px',
-              fontWeight: '500',
-            }}
-          >
-            API Key
-          </label>
-          <input
-            id="apiKey"
-            type="text"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder="Enter API key"
-            disabled={isRunning}
-            autoComplete="off"
-            spellCheck={false}
-            style={{
-              width: '100%',
-              padding: '8px',
-              fontSize: '14px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              boxSizing: 'border-box',
-              fontFamily: 'inherit',
-              WebkitTextSecurity: 'disc',
-            } as CSSProperties}
-          />
-        </div>
+          <div style={{ marginBottom: '12px' }}>
+            <label
+              htmlFor="apiKey"
+              style={{
+                display: 'block',
+                marginBottom: '4px',
+                fontSize: '14px',
+                fontWeight: '500',
+              }}
+            >
+              API Key
+            </label>
+            <input
+              id="apiKey"
+              type="text"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              placeholder="Enter API key"
+              disabled={isRunning}
+              autoComplete="off"
+              spellCheck={false}
+              style={{
+                width: '100%',
+                padding: '8px',
+                fontSize: '14px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                boxSizing: 'border-box',
+                fontFamily: 'inherit',
+                WebkitTextSecurity: 'disc',
+              } as CSSProperties}
+            />
+          </div>
 
-        <div style={{ marginBottom: '12px' }}>
-          <label
-            htmlFor="serverUrl"
-            style={{
-              display: 'block',
-              marginBottom: '4px',
-              fontSize: '14px',
-              fontWeight: '500',
-            }}
-          >
-            Server URL
-          </label>
-          <input
-            id="serverUrl"
-            type="text"
-            value={serverUrl}
-            onChange={(e) => setServerUrl(e.target.value)}
-            placeholder="Enter server URL"
-            disabled={isRunning}
-            style={{
-              width: '100%',
-              padding: '8px',
-              fontSize: '14px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              boxSizing: 'border-box',
-              fontFamily: 'inherit',
-            }}
-          />
+          <div style={{ marginBottom: '12px' }}>
+            <label
+              htmlFor="serverUrl"
+              style={{
+                display: 'block',
+                marginBottom: '4px',
+                fontSize: '14px',
+                fontWeight: '500',
+              }}
+            >
+              Server URL
+            </label>
+            <input
+              id="serverUrl"
+              type="text"
+              value={serverUrl}
+              onChange={(e) => setServerUrl(e.target.value)}
+              placeholder="Enter server URL"
+              disabled={isRunning}
+              style={{
+                width: '100%',
+                padding: '8px',
+                fontSize: '14px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                boxSizing: 'border-box',
+                fontFamily: 'inherit',
+              }}
+            />
+          </div>
         </div>
-      </div>
+      </details>
 
       <p style={{ marginBottom: '12px', fontSize: '13px', color: '#555' }}>
         Tip: you can also set dataset variables in a local .env file (see .env.example).
