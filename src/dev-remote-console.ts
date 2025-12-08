@@ -4,18 +4,16 @@ if (import.meta.env.DEV && typeof window !== 'undefined') {
   type Level = (typeof levels)[number]
 
   const sendToServer = (level: Level, args: unknown[]) => {
-    const payload = JSON.stringify({
-      level,
-      time: new Date().toISOString(),
-      args: args.map((value) => {
-        if (value instanceof Error) return { message: value.message, stack: value.stack }
-        try {
-          return typeof value === 'string' ? value : JSON.stringify(value)
-        } catch {
-          return String(value)
-        }
-      }),
-    })
+    const plainArgs = args.map((value) =>
+      value instanceof Error ? { message: value.message, stack: value.stack } : value
+    )
+
+    let payload: string
+    try {
+      payload = JSON.stringify({ level, time: new Date().toISOString(), args: plainArgs })
+    } catch {
+      payload = JSON.stringify({ level, time: new Date().toISOString(), args: args.map(String) })
+    }
 
     const blob = new Blob([payload], { type: 'application/json' })
     const url = '/__log'

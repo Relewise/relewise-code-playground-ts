@@ -14,10 +14,21 @@ function devLogMiddleware(): Plugin {
         })
 
         req.on('end', () => {
-          // Keep the payload simple; just dump what the client sent.
-          const message = body || '<empty>'
-          // eslint-disable-next-line no-console
-          console.log(`[client-log] ${message}`)
+          try {
+            const parsed = JSON.parse(body)
+            const args = Array.isArray(parsed?.args) ? parsed.args : [parsed]
+
+            if (args.length === 1) {
+              // eslint-disable-next-line no-console
+              console.log(args[0])
+            } else {
+              // eslint-disable-next-line no-console
+              console.log(...args)
+            }
+          } catch {
+            // eslint-disable-next-line no-console
+            console.log(body || '<empty>')
+          }
 
           res.statusCode = 204
           res.end()
