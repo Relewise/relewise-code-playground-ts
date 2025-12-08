@@ -1,11 +1,10 @@
-import { defineConfig, type Plugin } from 'vite'
+import { defineConfig, type ViteDevServer } from 'vite'
 import react from '@vitejs/plugin-react'
 
-function devLogMiddleware(): Plugin {
+function devLogMiddleware() {
   return {
     name: 'dev-client-log-forwarder',
-    apply: 'serve',
-    configureServer(server) {
+    configureServer(server: ViteDevServer) {
       server.middlewares.use('/__log', (req, res) => {
         let body = ''
 
@@ -14,20 +13,7 @@ function devLogMiddleware(): Plugin {
         })
 
         req.on('end', () => {
-          try {
-            const parsed = JSON.parse(body)
-            const args = Array.isArray(parsed?.args) ? parsed.args : [parsed]
-
-            if (args.length === 1) {
-              console.log(args[0])
-            } else {
-              console.log(...args)
-            }
-          } catch {
-            console.log(body || '<empty>')
-          }
-
-          res.statusCode = 204
+          console.log(body)
           res.end()
         })
       })
