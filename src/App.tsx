@@ -184,11 +184,12 @@ function App() {
             />
           </div>
         </div>
-      </details>
 
       <p style={{ marginBottom: '12px', fontSize: '13px', color: '#555' }}>
         Tip: you can also set dataset variables in a local .env file (see .env.example).
       </p>
+      
+      </details>
 
       <button
         onClick={handleRun}
