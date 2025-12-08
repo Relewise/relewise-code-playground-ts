@@ -13,7 +13,16 @@ function devLogMiddleware() {
         })
 
         req.on('end', () => {
-          console.log(body)
+          try {
+            const parsed = JSON.parse(body)
+            const args = Array.isArray(parsed?.args) ? parsed.args : [parsed]
+            const formatted = args.map((arg: unknown) =>
+              typeof arg === 'string' ? arg : JSON.stringify(arg, null, 2)
+            )
+            console.log(...formatted)
+          } catch {
+            console.log(body)
+          }
           res.end()
         })
       })
