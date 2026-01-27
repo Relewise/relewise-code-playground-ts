@@ -32,7 +32,7 @@ export async function runProductListingPages(
     .setSelectedProductProperties({
       displayName: true,
       pricing: true,
-      dataKeys: ['Url', 'ShortDescription', 'ImageUrls', 'DK_*'],
+      dataKeys: ['Url', 'ShortDescription', 'ImageUrls', 'DK_*'], // Change these variables to match your dataset
     })
     .pagination((p) => p.setPageSize(30).setPage(1))
     .facets((f) =>
