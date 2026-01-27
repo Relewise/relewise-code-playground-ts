@@ -3,7 +3,6 @@ import { runCartPage } from './cart-page';
 import { runProductCategorySearch } from './product-category-search';
 import { runProductListingPages } from './product-listing-pages';
 import { runProductSearch } from './product-search';
-import { runProductViewTracking } from './product-view-tracking';
 import { runProductsViewedAfterViewingProduct } from './products-viewed-after-viewing-product';
 import { runPurchasedWithProduct } from './purchased-with-product';
 import { runPowerStep } from './power-step';
@@ -41,5 +40,4 @@ export const EXAMPLES: ExampleDefinition[] = [
   { id: 'cart-page', label: 'Cart Page', run: runCartPage },
   { id: 'recommendation-batching', label: 'Recommendation Batching', run: runRecommendationBatching },
   { id: 'sort-products', label: 'Sort Products', run: runSortProducts },
-  { id: 'product-view-tracking', label: 'Product View Tracking', run: runProductViewTracking },
 ];
