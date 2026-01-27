@@ -34,9 +34,10 @@ export async function runProductsViewedAfterViewingProduct(
       pricing: true,
       allData: true,
     })
+    // Add the product ID and optional variant ID
     .product({
-      productId: 'p-1', // Replace with product ID from PDP
-      variantId: 'v-1', // Replace with variant ID from PDP
+      productId: 'p-1',
+      variantId: 'v-1',
     })
     .setNumberOfRecommendations(10);
 
