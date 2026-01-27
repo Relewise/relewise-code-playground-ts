@@ -1,4 +1,5 @@
 import { runProductCategorySearch } from './product-category-search';
+import { runProductListingPages } from './product-listing-pages';
 import { runProductSearch } from './product-search';
 import { runSearchTermPrediction } from './search-term-prediction';
 
@@ -24,4 +25,5 @@ export const EXAMPLES: ExampleDefinition[] = [
   { id: 'search-term-prediction', label: 'Search Term Prediction', run: runSearchTermPrediction },
   { id: 'product-search', label: 'Product Search', run: runProductSearch },
   { id: 'product-category-search', label: 'Product Category Search', run: runProductCategorySearch },
+  { id: 'product-listing-pages', label: 'Product Listing Pages', run: runProductListingPages },
 ];
