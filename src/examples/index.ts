@@ -2,6 +2,7 @@ import { runBatchingExample } from './batching';
 import { runProductCategorySearch } from './product-category-search';
 import { runProductListingPages } from './product-listing-pages';
 import { runProductSearch } from './product-search';
+import { runPurchasedWithProduct } from './purchased-with-product';
 import { runSearchTermPrediction } from './search-term-prediction';
 
 export type ExampleRunner = (opts: ExampleRunOptions) => Promise<unknown>;
@@ -28,4 +29,5 @@ export const EXAMPLES: ExampleDefinition[] = [
   { id: 'product-category-search', label: 'Product Category Search', run: runProductCategorySearch },
   { id: 'product-listing-pages', label: 'Product Listing Pages', run: runProductListingPages },
   { id: 'batching', label: 'Batching', run: runBatchingExample },
+  { id: 'purchased-with-product', label: 'Purchased With Product', run: runPurchasedWithProduct },
 ];
