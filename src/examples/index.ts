@@ -1,3 +1,4 @@
+import { runBatchingExample } from './batching';
 import { runProductCategorySearch } from './product-category-search';
 import { runProductListingPages } from './product-listing-pages';
 import { runProductSearch } from './product-search';
@@ -26,4 +27,5 @@ export const EXAMPLES: ExampleDefinition[] = [
   { id: 'product-search', label: 'Product Search', run: runProductSearch },
   { id: 'product-category-search', label: 'Product Category Search', run: runProductCategorySearch },
   { id: 'product-listing-pages', label: 'Product Listing Pages', run: runProductListingPages },
+  { id: 'batching', label: 'Batching', run: runBatchingExample },
 ];
