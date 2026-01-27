@@ -37,7 +37,7 @@ export async function runProductListingPages(
     .pagination((p) => p.setPageSize(30).setPage(1))
     .facets((f) =>
       f
-        .addBrandFacet(['HP', 'Lenovo'])
+        .addBrandFacet(['HP', 'Lenovo']) // Change these variables to match your dataset
         .addSalesPriceRangeFacet('Product', 100, 500)
         .addVariantSpecificationFacet('Size', ['XL'])
     )
