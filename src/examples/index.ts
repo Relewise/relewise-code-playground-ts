@@ -1,3 +1,4 @@
+import { runProductCategorySearch } from './product-category-search';
 import { runProductSearch } from './product-search';
 import { runSearchTermPrediction } from './search-term-prediction';
 
@@ -22,4 +23,5 @@ export interface ExampleDefinition {
 export const EXAMPLES: ExampleDefinition[] = [
   { id: 'search-term-prediction', label: 'Search Term Prediction', run: runSearchTermPrediction },
   { id: 'product-search', label: 'Product Search', run: runProductSearch },
+  { id: 'product-category-search', label: 'Product Category Search', run: runProductCategorySearch },
 ];
