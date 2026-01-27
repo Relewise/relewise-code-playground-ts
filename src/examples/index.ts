@@ -1,4 +1,5 @@
 import { runBatchingExample } from './batching';
+import { runCartPage } from './cart-page';
 import { runProductCategorySearch } from './product-category-search';
 import { runProductListingPages } from './product-listing-pages';
 import { runProductSearch } from './product-search';
@@ -34,4 +35,5 @@ export const EXAMPLES: ExampleDefinition[] = [
   { id: 'purchased-with-product', label: 'Purchased With Product', run: runPurchasedWithProduct },
   { id: 'products-viewed-after-viewing-product', label: 'Products Viewed After Viewing Product', run: runProductsViewedAfterViewingProduct },
   { id: 'power-step', label: 'Power Step', run: runPowerStep },
+  { id: 'cart-page', label: 'Cart Page', run: runCartPage },
 ];
