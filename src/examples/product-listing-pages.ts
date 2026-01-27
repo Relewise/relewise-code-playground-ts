@@ -45,7 +45,7 @@ export async function runProductListingPages(
       f
         .addProductAssortmentFilter(1)
         .addVariantAssortmentFilter(1)
-        .addProductCategoryIdFilter('ImmediateParent', ['category_id'])
+        .addProductCategoryIdFilter('ImmediateParent', ['category_id']) // Change category_id to the category ID for the PLP
     )
     .sorting((s) =>
       s.sortByProductData('InStock', 'Product', 'Descending', (n) =>
