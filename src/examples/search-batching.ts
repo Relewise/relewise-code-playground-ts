@@ -42,7 +42,7 @@ export async function runSearchBatchingExample(
           f
             .addBrandFacet()
             .addSalesPriceRangeFacet('Product')
-            .addVariantSpecificationFacet('Size')
+            .addVariantSpecificationFacet('Size') // Change these variables to match your dataset
         )
         .build()
     )
