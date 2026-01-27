@@ -36,8 +36,8 @@ export async function runPurchasedWithProduct(
     })
     // Add the product ID and optional variant ID
     .product({
-      productId: 'p-1', 
-      variantId: 'v-1', 
+      productId: 'p-1',
+      variantId: 'v-1',
     })
     .setNumberOfRecommendations(10);
 
