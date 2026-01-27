@@ -32,7 +32,7 @@ export async function runProductCategorySearch(
     .setSelectedCategoryProperties({
       displayName: true,
       paths: true,
-      dataKeys: ['Description', 'ImagePath'],
+      dataKeys: ['Description', 'ImagePath'], // Change these variables to match your dataset
     })
     .setTerm('shoe')
     .pagination((p) => p.setPageSize(30).setPage(1))
