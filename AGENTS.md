@@ -23,4 +23,4 @@ This Vite + React TypeScript sandbox demonstrates how to run Relewise SDK exampl
 - `src/main.tsx`: React entry point that bootstraps `App` inside `StrictMode`, wiring up shared styles and the remote console shim.
 - `src/vite-env.d.ts`: Ambient Vite type declarations to enable TypeScript support for the Vite environment variables used in the UI.
 
-If a file gets added or deleted, update this list to match. Every time you create, modify, or delete any file in this repository, run `npm run lint` before handing off your work and mention the touched paths in your final response.
+If a file gets added or deleted, update this list to match.
