@@ -39,7 +39,7 @@ export async function runProductListingPages(
       f
         .addBrandFacet(['HP', 'Lenovo']) // Change these variables to match your dataset
         .addSalesPriceRangeFacet('Product', 100, 500)
-        .addVariantSpecificationFacet('Size', ['XL'])
+        .addVariantSpecificationFacet('Size', ['XL']) // Change these variables to match your dataset
     )
     .filters((f) =>
       f
