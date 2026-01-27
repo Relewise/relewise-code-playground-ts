@@ -7,6 +7,7 @@ import { runProductsViewedAfterViewingProduct } from './products-viewed-after-vi
 import { runPurchasedWithProduct } from './purchased-with-product';
 import { runPowerStep } from './power-step';
 import { runRecommendationBatching } from './recommendation-batching';
+import { runSortProducts } from './sort-products';
 import { runSearchTermPrediction } from './search-term-prediction';
 
 export type ExampleRunner = (opts: ExampleRunOptions) => Promise<unknown>;
@@ -38,4 +39,5 @@ export const EXAMPLES: ExampleDefinition[] = [
   { id: 'power-step', label: 'Power Step', run: runPowerStep },
   { id: 'cart-page', label: 'Cart Page', run: runCartPage },
   { id: 'recommendation-batching', label: 'Recommendation Batching', run: runRecommendationBatching },
+  { id: 'sort-products', label: 'Sort Products', run: runSortProducts },
 ];
