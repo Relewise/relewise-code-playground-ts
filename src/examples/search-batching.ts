@@ -6,14 +6,14 @@ import {
   UserFactory,
 } from '@relewise/client';
 
-export interface BatchingExampleOptions {
+export interface SearchBatchingOptions {
   datasetId?: string;
   apiKey?: string;
   serverUrl?: string;
 }
 
-export async function runBatchingExample(
-  options: BatchingExampleOptions = {}
+export async function runSearchBatchingExample(
+  options: SearchBatchingOptions = {}
 ) {
   const { datasetId, apiKey, serverUrl } = options;
 
