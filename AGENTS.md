@@ -4,6 +4,7 @@
 This Vite + React TypeScript sandbox demonstrates how to run Relewise SDK examples locally or in StackBlitz by letting users pick a canned example, provide dataset credentials, and inspect the raw response.
 
 ## Source File Guide
+- `LICENSE`: MIT terms for reusing the playground and its examples.
 - `src/App.tsx`: React UI for selecting examples, entering dataset/api credentials, and displaying formatted output with basic error handling.
 - `src/dev-remote-console.ts`: Patches the browser console in dev builds to forward logs to the Vite dev server so StackBlitz previews show console output.
 - `src/examples/index.ts`: Central registry defining the `ExampleRunner` contract and listing which example IDs map to which runner functions.
